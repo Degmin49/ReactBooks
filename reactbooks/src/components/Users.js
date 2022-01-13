@@ -1,11 +1,11 @@
 import React from "react";
 
-const MyBooks = () => {
+const Users = () => {
     return(
         <div>
-            Hello from MyBooks!
+            Hello from Users!
         </div>
     );
 }
 
-export default MyBooks
+export default Users
