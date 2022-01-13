@@ -1,0 +1,16 @@
+.App{
+    font-size: 24px;
+}
+
+.MyContainer{
+    margin-top: 40px;
+}
+
+.MyTitle{
+    font-size: 40px;
+}
+
+.MyTitleGreen{
+    font-size: 40px;
+    color: seagreen;
+}
