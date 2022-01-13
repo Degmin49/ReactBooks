@@ -3,17 +3,20 @@ import { Button, Table } from "react-bootstrap";
 import { Container } from 'react-bootstrap';
 
 var Users = [
-    {userid: 0,type: true,name: "Adam",surname: "Małysz",email: "adam.malysz@wp.pl"},
-    {userid: 1,type: false,name: "Robert",surname: "Lewandowski",email: "zlota@pilka.fr"},
+    {userid: 0,type: true,name: "Adam",surname: "Małysz",email: "adam.małysz@wp.pl"},
+    {userid: 1,type: false,name: "Robert",surname: "Lewandowski",email: "złota@piłka.fr"},
     {userid: 2,type: false,name: "Michał",surname: "Pazdan",email: "ronaldo@nieprzejdzie.pl"},
     {userid: 3,type: false,name: "Sergio",surname: "Ramos",email: "ball@incosmos.com"},
-    {userid: 4,type: false,name: "Arek",surname: "Milik",email: "sila@nietechnika.pl"}
+    {userid: 4,type: false,name: "Arek",surname: "Milik",email: "siła@nie-technika.pl"}
 ];
 // Users = [];
 var UsersList = Users.map((x,index) => 
     <tr key={x.userid}>
         <td>{index+1}</td>
-        <td><button type="button" className="btn btn-outline-secondary">Edytuj</button></td>
+        <td>{x.name} {x.type ? <span title="Konto administratora">✔</span> : ''}</td>
+        <td>{x.surname}</td>
+        <td>{x.email}</td>
+        <td>{x.type ? '' : <button type="button" className="btn btn-outline-secondary">Edytuj</button>}</td>
     </tr>);
 
 const UsersPanel = () => {
