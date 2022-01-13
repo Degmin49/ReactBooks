@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import MyBooks from './components/MyBooks';
 import WaitingBooks from './components/WaitingBooks';
-import Users from './components/Users';
+import UsersPanel from './components/UsersPanel';
 import OfficialBooks from './components/OfficialBooks';
 import Settings from './components/Settings';
 import Login from './components/Login';
@@ -30,7 +30,7 @@ function App() {
               <Nav.Link as={Link} to={"/MyBooks"}>Moja kolekcja książek</Nav.Link>
               {/* Admin */}
               <Nav.Link as={Link} to={"/WaitingBooks"}>Oczekujące na potwierdzenie</Nav.Link>
-              <Nav.Link as={Link} to={"/Users"}>Użytkownicy</Nav.Link>
+              <Nav.Link as={Link} to={"/UsersPanel"}>Użytkownicy</Nav.Link>
               <Nav.Link as={Link} to={"/OfficialBooks"}>Książki</Nav.Link>
               {/* All */}
               <NavDropdown title='KONTO'>
@@ -44,7 +44,7 @@ function App() {
         <Routes>
           <Route path="/MyBooks" element={<MyBooks/>} />
           <Route path="/WaitingBooks" element={<WaitingBooks/>} />
-          <Route path="/Users" element={<Users/>} />
+          <Route path="/UsersPanel" element={<UsersPanel/>} />
           <Route path="/OfficialBooks" element={<OfficialBooks/>} />
           <Route path="/Settings" element={<Settings/>} />
           <Route path="/Login" element={<Login/>} />
