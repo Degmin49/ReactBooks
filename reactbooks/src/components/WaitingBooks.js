@@ -17,7 +17,25 @@ class WaitingBooks extends React.Component {
             currentIndex: 0
         };
     }
-        
+    
+    deleteItem() {
+        let books = this.state.books;
+        books.splice(this.state.currentIndex, 1);
+        this.setState({ books: books });
+    }
+
+    discardBook() {
+        console.log("Nie akceptujemy obiektu: "+this.state.books[this.state.currentIndex].title); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        this.deleteItem();
+        this.setState({ currentIndex: 0 });
+    }
+
+    acceptBook() {
+        console.log("Akceptujemy obiekt: "+this.state.books[this.state.currentIndex].title); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        this.deleteItem();
+        this.setState({ currentIndex: 0 });
+    }
+    
     render(){
         const BooksList = this.state.books.map((x,index) => {
             return (
