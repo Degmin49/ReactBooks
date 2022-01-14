@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Form, Modal, Table } from "react-bootstrap";
-import { Container } from 'react-bootstrap';
+import { Container, Button, Form, Modal, Table } from "react-bootstrap";
 
 var Users = [
     {userid: 0,type: true,name: "Adam",surname: "Małysz",email: "adam.małysz@wp.pl"},
