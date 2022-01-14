@@ -16,10 +16,11 @@ var UsersList = Users.map((x,index) =>
         <td>{x.name} {x.type ? <span title="Konto administratora">✔</span> : ''}</td>
         <td>{x.surname}</td>
         <td>{x.email}</td>
-        <td>{x.type ? '' : <button type="button" onClick={edit(x)} className="btn btn-outline-secondary">Edytuj</button>}</td>
+        <td>{x.type ? '' : <button type="button" onClick={() => edit(x)} className="btn btn-outline-secondary">Edytuj</button>}</td>
     </tr>);
 
 function edit(x) {
+    
     console.log("Imie: "+x.name); //co tutaj się dzieje
 }
 
