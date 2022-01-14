@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Table } from "react-bootstrap";
+import { Button, Form, Modal, Table } from "react-bootstrap";
 import { Container } from 'react-bootstrap';
 
 var Users = [
@@ -15,7 +15,8 @@ class UsersPanel extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            users: Users
+            users: Users,
+            showModal: false
         };
     }
     
@@ -33,7 +34,7 @@ class UsersPanel extends React.Component {
                 <td>{x.name} {x.type ? <span title="Konto administratora">✔</span> : ''}</td>
                 <td>{x.surname}</td>
                 <td>{x.email}</td>
-                <td>{x.type ? '' : <button type="button" onClick={() => {this.deleteItem(index)}} className="btn btn-outline-secondary">Edytuj</button>}</td>
+                <td>{x.type ? '' : <button type="button" onClick={() => {this.setState({showModal: true})}} className="btn btn-outline-secondary">Edytuj</button>}</td>
             </tr>
         )});
         let Content;
@@ -60,11 +61,26 @@ class UsersPanel extends React.Component {
         return(
             <Container className="MyContainer">
                 {Content}
+                <Modal show={this.state.showModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Usuwanie użytkownika</Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
+                        <p>Czy na pewno chcesz usunąć użytkownika X X?</p>
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary">Close</Button>
+                        <Button variant="primary">Save changes</Button>
+                    </Modal.Footer>
+                </Modal>
             </Container>
         );
     }
 }
 
 {/* <Form.Control type="email" placeholder="Enter email" /> */}
+// onHide={this.setState({showModal: false})}
 
 export default UsersPanel
