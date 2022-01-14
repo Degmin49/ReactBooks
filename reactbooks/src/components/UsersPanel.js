@@ -33,7 +33,7 @@ class UsersPanel extends React.Component {
         this.setState({ showModalDelete: false });
     }
 
-    editUser(){
+    editUser() {
         var newUserName = document.getElementById("newUserName").value;
         var newUserSurname = document.getElementById("newUserSurname").value;
         var newUserEmail = document.getElementById("newUserEmail").value;
