@@ -60,8 +60,8 @@ class UsersPanel extends React.Component {
                 <td>{x.surname}</td>
                 <td>{x.email}</td>
                 <td>
-                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}} className="btn btn-outline-secondary">Edytuj</button>}
-                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}} className="btn btn-outline-danger">Usuń</button>}
+                    {x.type ? '' : <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}}>Edytuj</Button>}
+                    {x.type ? '' : <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}}>Usuń</Button>}
                 </td>
             </tr>
         )});
