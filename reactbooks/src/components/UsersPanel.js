@@ -30,7 +30,7 @@ class UsersPanel extends React.Component {
     deleteUser() {
         console.log("Usuwamy obiekt: "+this.state.users[this.state.currentIndex].name+" "+this.state.users[this.state.currentIndex].surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         this.deleteItem();
-        this.setState({ showModalDelete: false });
+        this.setState({ showModalDelete: false, currentIndex: 0 });
     }
 
     editUser() {

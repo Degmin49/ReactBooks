@@ -19,8 +19,16 @@ class OfficialBooks extends React.Component {
         };
     }
 
+    deleteItem() {
+        let books = this.state.books;
+        books.splice(this.state.currentIndex, 1);
+        this.setState({ books: books });
+    }
+
     deleteBook() {
-        console.log("delete book");
+        console.log("Usuwamy obiekt: "+this.state.books[this.state.currentIndex].title); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        this.deleteItem();
+        this.setState({ showModalDelete: false, currentIndex: 0 });
     }
 
     editBook() {
