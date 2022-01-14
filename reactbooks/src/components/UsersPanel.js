@@ -16,8 +16,7 @@ class UsersPanel extends React.Component {
         super(props);
         this.state = {
             users: Users,
-            currentUser: '',
-            currentIndex: -1,
+            currentIndex: 0,
             showModalDelete: false,
             showModalEdit: false
         };
@@ -30,13 +29,13 @@ class UsersPanel extends React.Component {
     }
 
     deleteUser() {
-        console.log("Usuwamy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        console.log("Usuwamy obiekt: "+this.state.users[this.state.currentIndex].name+" "+this.state.users[this.state.currentIndex].surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         this.deleteItem();
         this.setState({ showModalDelete: false });
     }
 
     editUser(){
-        console.log("Edytujemy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        console.log("Edytujemy obiekt: "+this.state.users[this.state.currentIndex].name+" "+this.state.users[this.state.currentIndex].surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         
         var newUserName = document.getElementById("newUserName").value;
         var newUserSurname = document.getElementById("newUserSurname").value;
@@ -46,7 +45,7 @@ class UsersPanel extends React.Component {
         //this.setState({ currentUser: newUser });
 
         this.setState(prevState => {
-            let currentUser = Object.assign({}, prevState.currentUser);
+            let currentUser = Object.assign({}, prevState.users[this.state.currentIndex]);
             currentUser.name = document.getElementById("newUserName").value;
             currentUser.surname = document.getElementById("newUserSurname").value;
             currentUser.email = document.getElementById("newUserEmail").value;
@@ -55,7 +54,7 @@ class UsersPanel extends React.Component {
 
         this.setState({ showModalEdit: false });
 
-        console.log(this.state.currentUser.name);
+        console.log(this.state.users[this.state.currentIndex].name);
     }
 
     render(){
@@ -67,8 +66,8 @@ class UsersPanel extends React.Component {
                 <td>{x.surname}</td>
                 <td>{x.email}</td>
                 <td>
-                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalEdit: true, currentUser: x, currentIndex: index})}} className="btn btn-outline-secondary">Edytuj</button>}
-                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalDelete: true, currentUser: x, currentIndex: index})}} className="btn btn-outline-danger">Usuń</button>}
+                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}} className="btn btn-outline-secondary">Edytuj</button>}
+                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}} className="btn btn-outline-danger">Usuń</button>}
                 </td>
             </tr>
         )});
@@ -99,7 +98,7 @@ class UsersPanel extends React.Component {
 
                 <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
                     <Modal.Header closeButton><Modal.Title>Usuwanie użytkownika</Modal.Title></Modal.Header>
-                    <Modal.Body><p>Czy na pewno chcesz usunąć użytkownika {this.state.currentUser.name} {this.state.currentUser.surname}?</p></Modal.Body>
+                    <Modal.Body><p>Czy na pewno chcesz usunąć użytkownika {this.state.users[this.state.currentIndex].name} {this.state.users[this.state.currentIndex].surname}?</p></Modal.Body>
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => {this.setState({showModalDelete: false})}}>Anuluj</Button>
@@ -107,18 +106,18 @@ class UsersPanel extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
-                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentUser: ''})}}>
+                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>
                     <Modal.Header closeButton><Modal.Title>Edytuj dane użytkownika:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control id="newUserName" className="MyFormControl" type="text" defaultValue={this.state.currentUser.name} />
-                        <Form.Control id="newUserSurname" className="MyFormControl" type="text" defaultValue={this.state.currentUser.surname} />
-                        <Form.Control id="newUserEmail" className="MyFormControl" type="email" defaultValue={this.state.currentUser.email} />
+                        <Form.Control id="newUserName" className="MyFormControl" type="text" defaultValue={this.state.users[this.state.currentIndex].name} />
+                        <Form.Control id="newUserSurname" className="MyFormControl" type="text" defaultValue={this.state.users[this.state.currentIndex].surname} />
+                        <Form.Control id="newUserEmail" className="MyFormControl" type="email" defaultValue={this.state.users[this.state.currentIndex].email} />
                         </Form>
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentUser: ''})}}>Anuluj</Button>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>Anuluj</Button>
                         <Button variant="success" onClick={() => {this.editUser()}}>Tak, zmień!</Button>
                     </Modal.Footer>
                 </Modal>
