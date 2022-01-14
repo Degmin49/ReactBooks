@@ -16,7 +16,8 @@ class MyBooks extends React.Component {
             currentIndex: 0,
             showModalDelete: false,
             showModalEdit: false,
-            showModalSend: false
+            showModalSend: false,
+            showModalAdd: false
         };
     }
 
@@ -68,6 +69,24 @@ class MyBooks extends React.Component {
         this.setState({ showModalSend: false });
     }
 
+    addBook() {
+        let newBookTitle = document.getElementById("newBookTitle").value;
+        let newBookAuthor = document.getElementById("newBookAuthor").value;
+        let newBookDescription = document.getElementById("newBookDescription").value;
+        let newBookComment = document.getElementById("newBookComment").value;
+
+        let newBook = {bookid: this.state.books[this.state.currentIndex].bookid, type: this.state.books[this.state.currentIndex].type, title: newBookTitle, author: newBookAuthor,comment: newBookComment, description: newBookDescription};
+
+        console.log('Dodajemy nową książkę z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UWAGA - OFFICIAL KSIĄŻKE TYLKO KOMENTARZ MOŻNA EDYTOWAĆ
+
+        let currentId = this.state.books[this.state.currentIndex].bookid;
+        this.setState(prevState => ({
+            books: prevState.books.map(obj => (obj.bookid === currentId ? newBook : obj))
+        }));
+        
+        this.setState({ showModalEdit: false });
+    }
+
     render(){
         const BooksList = this.state.books.map((x,index) => {
             return (
@@ -103,7 +122,7 @@ class MyBooks extends React.Component {
                         {BooksList}
                     </tbody>
                 </Table>
-                <button type="button" className="btn btn-outline-success">Dodaj nową pozycję!</button>
+                <Button variant="btn btn-outline-success" onClick={() => {this.setState({showModalAdd: true})}}>Dodaj nową pozycję!</Button>
             </div>
         } else {Content = <div className="MyTitleGreen">Dodaj swoją pierwszą książkę do listy ulubionych!</div>}
 
@@ -145,6 +164,23 @@ class MyBooks extends React.Component {
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => {this.setState({showModalSend: false})}}>Anuluj</Button>
                         <Button variant="success" onClick={() => {this.sendBook()}}>Tak, wyślij!</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={this.state.showModalAdd} onHide={() => {this.setState({showModalAdd: false})}}>
+                    <Modal.Header closeButton><Modal.Title>Wpisz dane książki:</Modal.Title></Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" />
+                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" />
+                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" />
+                        <Form.Control id="newBookComment" className="MyFormControl" type="text" />
+                        </Form>
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalAdd: false})}}>Anuluj</Button>
+                        <Button variant="success" onClick={() => {this.editBook()}}>Tak, dodaj!</Button>
                     </Modal.Footer>
                 </Modal>
             </Container>
