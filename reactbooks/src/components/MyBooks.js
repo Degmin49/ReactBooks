@@ -113,9 +113,9 @@ class MyBooks extends React.Component {
                     <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} />
-                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} />
-                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} />
+                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
+                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
+                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
                         <Form.Control id="newBookComment" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].comment} />
                         </Form>
                     </Modal.Body>
