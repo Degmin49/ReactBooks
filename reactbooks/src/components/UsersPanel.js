@@ -19,40 +19,10 @@ class UsersPanel extends React.Component {
         };
     }
     
-    showContent(){
-        // if (Users.length > 0) {
-        //     this.setState({content: 
-        //         <div>
-        //             <span className="MyTitle">Lista użytkowników:<br /><br /></span>
-        //             <Table>
-        //                 <thead>
-        //                     <tr>
-        //                         <th>Lp.</th>
-        //                         <th>Imię</th>
-        //                         <th>Nazwisko</th>
-        //                         <th>E-mail</th>
-        //                     </tr>
-        //                 </thead>
-        //                 <tbody>
-        //                     {UsersList}
-        //                     <tr key={-1}>
-        //                         <th>Lp.</th>
-        //                         <th>Imię</th>
-        //                         <th>Nazwisko</th>
-        //                         <th>
-        //                         <Form.Control type="email" placeholder="Enter email" />
-        //                         </th>
-        //                     </tr>
-        //                 </tbody>
-        //             </Table>
-        //         </div>
-        //     });
-        // }
-        // else {
-        //     this.setState({content: 
-        //         <div className="MyTitleGreen">Nie ma żadnych użytkowników!</div>
-        //     });
-        // }
+    deleteItem(index) {
+        let users = this.state.users;
+        users.splice(index, 1);
+        this.setState({ users: users });
     }
 
     render(){
@@ -63,7 +33,7 @@ class UsersPanel extends React.Component {
                 <td>{x.name} {x.type ? <span title="Konto administratora">✔</span> : ''}</td>
                 <td>{x.surname}</td>
                 <td>{x.email}</td>
-                <td>{x.type ? '' : <button type="button" className="btn btn-outline-secondary">Edytuj</button>}</td>
+                <td>{x.type ? '' : <button type="button" onClick={() => {this.deleteItem(index)}} className="btn btn-outline-secondary">Edytuj</button>}</td>
             </tr>
         )});
         let Content;
