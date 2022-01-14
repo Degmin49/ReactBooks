@@ -58,7 +58,7 @@ class MyBooks extends React.Component {
     }
 
     sendBook() {
-        console.log('Edytujemy obiekt z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        console.log('Wysłano prośbę z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
         let currentId = this.state.books[this.state.currentIndex].bookid;
         this.setState(prevState => ({
