@@ -8,22 +8,33 @@ var Books = [
     {bookid: 2,title: "Minecraft komiks. Tom 3",author: "Sarah Graley",description: 'Candace, Evan, Grace, Tobi i Tyler przeżywają liczne przygody w Świecie Podstawowym. Pewnego dnia trafiają na tajemniczy uszkodzony portal. Przenosi on ich do dziwnego i cudownego zakątka Netheru, którego wcześniej nie znali. W jego eksplorowaniu ma im pomóc ich specjalistka od Netheru, Grace. Jednak w obliczu nowych zagrożeń Grace odkrywa, że brzemię wiary, jaką pokładają w niej jej przyjaciele, zanadto ją przytłacza. Gracze trafiają do niesamowitego bastionu, w którym na każdym kroku czają się nowe zagrożenia… ale tym razem muszą im stawić czoła bez pomocy swojej ekspertki. Wygląda jednak na to, że aby poradzić sobie z nowymi zagrożeniami, przyjaciele będą musieli ponownie połączyć siły…'}
 ];
 // Books = [];
-var BooksList = Books.map((x,index) => 
-    <tr key={x.bookid}>
-        <td>{index+1}</td>
-        <td>{x.title}</td>
-        <td>{x.author}</td>
-        <td>{x.description}</td>
-        <td>
-            <button type="button" className="btn btn-outline-success">Zaakceptuj</button>
-            <button type="button" className="btn btn-outline-danger">Odrzuć</button>
-        </td>
-    </tr>);
 
-const WaitingBooks = () => {
-    let content;
-    if (Books.length > 0) {
-        content = 
+class WaitingBooks extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            books: Books,
+            currentIndex: 0
+        };
+    }
+        
+    render(){
+        const BooksList = this.state.books.map((x,index) => {
+            return (
+                <tr key={x.bookid}>
+                    <td>{index+1}</td>
+                    <td>{x.title}</td>
+                    <td>{x.author}</td>
+                    <td>{x.description}</td>
+                    <td>
+                        <Button className="MyTableButton" variant="success" onClick={() => {this.setState({currentIndex: index})}}>Zaakceptuj</Button>
+                        <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({currentIndex: index})}}>Odrzuć</Button>
+                    </td>
+                </tr>
+        )});
+        let Content;
+        if (this.state.books.length > 0){
+            Content = 
             <div>
                 <span className="MyTitle">Książki oczekujące na potwierdzenie:<br /><br /></span>
                 <Table>
@@ -32,7 +43,7 @@ const WaitingBooks = () => {
                             <th>Lp.</th>
                             <th>Tytuł</th>
                             <th>Autor</th>
-                            <th>Notatka</th>
+                            <th>Opis</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,14 +51,14 @@ const WaitingBooks = () => {
                     </tbody>
                 </Table>
             </div>
+        } else {Content = <div className="MyTitleGreen">Nie ma żadnych książek do potwierdzenia!</div>}
+        
+        return(
+            <Container className="MyContainer">
+                {Content}
+            </Container>
+        );
     }
-    else {content = <div className="MyTitleGreen">Nie ma żadnych książek do potwierdzenia!</div>}
-    
-    return(
-        <Container className="MyContainer">
-            {content}
-        </Container>
-    );
 }
 
 export default WaitingBooks
