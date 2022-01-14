@@ -35,26 +35,20 @@ class UsersPanel extends React.Component {
     }
 
     editUser(){
-        console.log("Edytujemy obiekt: "+this.state.users[this.state.currentIndex].name+" "+this.state.users[this.state.currentIndex].surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        
         var newUserName = document.getElementById("newUserName").value;
         var newUserSurname = document.getElementById("newUserSurname").value;
         var newUserEmail = document.getElementById("newUserEmail").value;
-        //let newUser = {userid: this.state.currentUser.userid, type: this.state.currentUser.type, name: newUserName, surname: newUserSurname, email: newUserEmail};
+        let newUser = {userid: this.state.users[this.state.currentIndex].userid, type: this.state.users[this.state.currentIndex].type, name: newUserName, surname: newUserSurname, email: newUserEmail};
 
-        //this.setState({ currentUser: newUser });
+        console.log('Edytujemy obiekt z "userid": '+this.state.users[this.state.currentIndex].userid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        console.log("Tymi danymi: "+newUserName+" "+newUserSurname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-        this.setState(prevState => {
-            let currentUser = Object.assign({}, prevState.users[this.state.currentIndex]);
-            currentUser.name = document.getElementById("newUserName").value;
-            currentUser.surname = document.getElementById("newUserSurname").value;
-            currentUser.email = document.getElementById("newUserEmail").value;
-            return { currentUser };
-          });
-
+        var currentId = this.state.users[this.state.currentIndex].userid;
+        this.setState(prevState => ({
+            users: prevState.users.map(obj => (obj.userid === currentId ? newUser : obj))
+        }));
+        
         this.setState({ showModalEdit: false });
-
-        console.log(this.state.users[this.state.currentIndex].name);
     }
 
     render(){
