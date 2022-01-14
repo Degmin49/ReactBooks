@@ -16,7 +16,7 @@ class UsersPanel extends React.Component {
         super(props);
         this.state = {
             users: Users,
-            currentUser: '',
+            currentUser: Users[0],
             currentIndex: -1,
             showModalDelete: false,
             showModalEdit: false
@@ -37,6 +37,13 @@ class UsersPanel extends React.Component {
 
     editUser(){
         console.log("Edytujemy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        
+        let newUserName = document.getElementById("newUserName").value;
+        let newUserSurname = document.getElementById("newUserSurname").value;
+        let newUserEmail = document.getElementById("newUserEmail").value;
+        
+        
+        // this.setState((prevState) => {currentUser: {userid: prevState.userid, }});
         this.setState({ showModalEdit: false });
     }
 
@@ -93,9 +100,9 @@ class UsersPanel extends React.Component {
                     <Modal.Header closeButton><Modal.Title>Edytuj dane użytkownika:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control className="MyFormControl" type="text" defaultValue={this.state.currentUser.name} />
-                        <Form.Control className="MyFormControl" type="text" defaultValue={this.state.currentUser.surname} />
-                        <Form.Control className="MyFormControl" type="email" defaultValue={this.state.currentUser.email} />
+                        <Form.Control id="newUserName" className="MyFormControl" type="text" defaultValue={this.state.currentUser.name} />
+                        <Form.Control id="newUserSurname" className="MyFormControl" type="text" defaultValue={this.state.currentUser.surname} />
+                        <Form.Control id="newUserEmail" className="MyFormControl" type="email" defaultValue={this.state.currentUser.email} />
                         </Form>
                     </Modal.Body>
 
