@@ -60,7 +60,7 @@ class MyBooks extends React.Component {
     sendBook() {
         console.log('Edytujemy obiekt z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-        this.setState({ showModalSend: false, currentIndex: 0 });
+        this.setState({ showModalSend: false });
     }
 
     render(){
@@ -116,7 +116,7 @@ class MyBooks extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
-                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>
+                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false})}}>
                     <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -128,17 +128,17 @@ class MyBooks extends React.Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>Anuluj</Button>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false})}}>Anuluj</Button>
                         <Button variant="success" onClick={() => {this.editBook()}}>Tak, zmień!</Button>
                     </Modal.Footer>
                 </Modal>
 
-                <Modal show={this.state.showModalSend} onHide={() => {this.setState({showModalSend: false, currentIndex: 0})}}>
+                <Modal show={this.state.showModalSend} onHide={() => {this.setState({showModalSend: false})}}>
                     <Modal.Header closeButton><Modal.Title>Czy na pewno wysłać prośbę?</Modal.Title></Modal.Header>
                     <Modal.Body><p>Czy na pewno chcesz wysłać prośbę, aby książka "{this.state.books[this.state.currentIndex].title}", autorstka {this.state.books[this.state.currentIndex].author} została dodana do listy oficjalnych książek?</p></Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {this.setState({showModalSend: false, currentIndex: 0})}}>Anuluj</Button>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalSend: false})}}>Anuluj</Button>
                         <Button variant="success" onClick={() => {this.sendBook()}}>Tak, wyślij!</Button>
                     </Modal.Footer>
                 </Modal>
