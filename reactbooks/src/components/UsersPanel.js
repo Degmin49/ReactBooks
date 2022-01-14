@@ -16,8 +16,8 @@ class UsersPanel extends React.Component {
         super(props);
         this.state = {
             users: Users,
-            currentUser: Users[0],
-            currentIndex: 0,
+            currentUser: '',
+            currentIndex: -1,
             showModalDelete: false,
             showModalEdit: false
         };
@@ -35,7 +35,7 @@ class UsersPanel extends React.Component {
     }
 
     editUser(){
-
+        console.log("Edytujemy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     }
 
     render(){
@@ -87,20 +87,24 @@ class UsersPanel extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
-                {/* <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
-                    <Modal.Header closeButton><Modal.Title>Usuwanie użytkownika</Modal.Title></Modal.Header>
-                    <Modal.Body><p>Czy na pewno chcesz usunąć użytkownika {this.state.currentUser.name} {this.state.currentUser.surname}?</p></Modal.Body>
+                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentUser: ''})}}>
+                    <Modal.Header closeButton><Modal.Title>Edytuj dane użytkownika:</Modal.Title></Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                        <Form.Control className="MyFormControl" type="text" value={this.state.currentUser.name} />
+                        <Form.Control className="MyFormControl" type="text" value={this.state.currentUser.surname} />
+                        <Form.Control className="MyFormControl" type="email" value={this.state.currentUser.email} />
+                        </Form>
+                    </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {this.setState({showModalDelete: false})}}>Anuluj</Button>
-                        <Button variant="danger" onClick={() => {this.deleteItem()}}>Tak, usuń!</Button>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentUser: ''})}}>Anuluj</Button>
+                        <Button variant="success" onClick={() => {this.editUser()}}>Tak, zmień!</Button>
                     </Modal.Footer>
-                </Modal> */}
+                </Modal>
             </Container>
         );
     }
 }
-
-{/* <Form.Control type="email" placeholder="Enter email" /> */}
 
 export default UsersPanel
