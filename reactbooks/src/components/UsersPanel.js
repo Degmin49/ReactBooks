@@ -16,7 +16,7 @@ class UsersPanel extends React.Component {
         super(props);
         this.state = {
             users: Users,
-            currentUser: Users[0],
+            currentUser: '',
             currentIndex: -1,
             showModalDelete: false,
             showModalEdit: false
@@ -38,13 +38,24 @@ class UsersPanel extends React.Component {
     editUser(){
         console.log("Edytujemy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         
-        let newUserName = document.getElementById("newUserName").value;
-        let newUserSurname = document.getElementById("newUserSurname").value;
-        let newUserEmail = document.getElementById("newUserEmail").value;
-        
-        
-        // this.setState((prevState) => {currentUser: {userid: prevState.userid, }});
+        var newUserName = document.getElementById("newUserName").value;
+        var newUserSurname = document.getElementById("newUserSurname").value;
+        var newUserEmail = document.getElementById("newUserEmail").value;
+        //let newUser = {userid: this.state.currentUser.userid, type: this.state.currentUser.type, name: newUserName, surname: newUserSurname, email: newUserEmail};
+
+        //this.setState({ currentUser: newUser });
+
+        this.setState(prevState => {
+            let currentUser = Object.assign({}, prevState.currentUser);
+            currentUser.name = document.getElementById("newUserName").value;
+            currentUser.surname = document.getElementById("newUserSurname").value;
+            currentUser.email = document.getElementById("newUserEmail").value;
+            return { currentUser };
+          });
+
         this.setState({ showModalEdit: false });
+
+        console.log(this.state.currentUser.name);
     }
 
     render(){
