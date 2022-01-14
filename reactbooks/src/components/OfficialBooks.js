@@ -32,7 +32,20 @@ class OfficialBooks extends React.Component {
     }
 
     editBook() {
-        console.log("edit book");
+        var newBookTitle = document.getElementById("newBookTitle").value;
+        var newBookAuthor = document.getElementById("newBookAuthor").value;
+        var newBookDescription = document.getElementById("newBookDescription").value;
+        let newBook = {bookid: this.state.books[this.state.currentIndex].bookid, type: this.state.books[this.state.currentIndex].type, title: newBookTitle, author: newBookAuthor, description: newBookDescription};
+
+        console.log('Edytujemy obiekt z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        console.log("Tymi danymi: "+newBookTitle); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+        var currentId = this.state.books[this.state.currentIndex].bookid;
+        this.setState(prevState => ({
+            books: prevState.books.map(obj => (obj.bookid === currentId ? newBook : obj))
+        }));
+        
+        this.setState({ showModalEdit: false });
     }
 
     render(){
