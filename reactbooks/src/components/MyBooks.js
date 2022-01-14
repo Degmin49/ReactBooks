@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Table } from "react-bootstrap";
-import { Container } from 'react-bootstrap';
+import { Container, Button, Form, Modal, Table } from "react-bootstrap";
 
 var Books = [
     {bookid: 0,title: "Wiedźmin. Tom 3. Krew elfów",author: "Andrzej Sapkowski",type: "private",comment: "Podoba mi się, choć jest nudna.",description: '"Krew elfów" opowiada o losach Geralta - wiedźmina, który opiekuje się dzieckiem-niespodzianką. Tym dzieckiem jest dziewczynka o imieniu Ciri. W prezentowanym tomie poznajemy też czarodziejkę Triss, która również ma wpływ na wychowanie dziecka. Autor powoli wprowadza czytelnika w nowy świat, kreuje i daje poznać otaczającą bohaterów rzeczywistość. Fabuła książki rozgrywa się w świecie określanym przez samego autora jako quasi-średniowiecze. Mamy więc tu nie tylko zwykłych ludzi, ale też mutantów, krasnoludów i elfów.'},
@@ -18,6 +17,18 @@ class MyBooks extends React.Component {
             showModalDelete: false,
             showModalEdit: false
         };
+    }
+
+    deleteItem() {
+        let books = this.state.books;
+        books.splice(this.state.currentIndex, 1);
+        this.setState({ books: books });
+    }
+
+    deleteBook() {
+        console.log("Usuwamy obiekt: "+this.state.books[this.state.currentIndex].title); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        this.deleteItem();
+        this.setState({ showModalDelete: false, currentIndex: 0 });
     }
 
     render(){
@@ -62,6 +73,32 @@ class MyBooks extends React.Component {
         return(
             <Container className="MyContainer">
                 {Content}
+
+                <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
+                    <Modal.Header closeButton><Modal.Title>Usuwanie książki</Modal.Title></Modal.Header>
+                    <Modal.Body><p>Czy na pewno chcesz usunąć książkę "{this.state.books[this.state.currentIndex].title}", autorstka {this.state.books[this.state.currentIndex].author}?</p></Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalDelete: false})}}>Anuluj</Button>
+                        <Button variant="danger" onClick={() => {this.deleteBook()}}>Tak, usuń!</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                {/* <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>
+                    <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} />
+                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} />
+                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} />
+                        </Form>
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>Anuluj</Button>
+                        <Button variant="success" onClick={() => {this.editBook()}}>Tak, zmień!</Button>
+                    </Modal.Footer>
+                </Modal> */}
             </Container>
         );
     }
