@@ -26,16 +26,18 @@ class UsersPanel extends React.Component {
     deleteItem() {
         let users = this.state.users;
         users.splice(this.state.currentIndex, 1);
-        this.setState({ users: users, showModalDelete: false });
+        this.setState({ users: users });
     }
 
     deleteUser() {
         console.log("Usuwamy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         this.deleteItem();
+        this.setState({ showModalDelete: false });
     }
 
     editUser(){
         console.log("Edytujemy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        this.setState({ showModalEdit: false });
     }
 
     render(){
