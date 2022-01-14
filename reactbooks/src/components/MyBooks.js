@@ -80,7 +80,7 @@ class MyBooks extends React.Component {
                     <td>
                         <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}}>Edytuj</Button>
                         <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}}>Usuń</Button>
-                        {x.type != "official" ? <Button disabled={x.send} className="MyTableButton" variant="success" onClick={() => {this.setState({showModalSend: true, currentIndex: index})}} title="Wyślij prośbę do administratora o dodanie książki do listy oficjalnych książek">Wyślij prośbę</Button> : ""}
+                        {x.type != "official" ? <Button disabled={x.send} className="MyTableButton" variant="success" onClick={() => {this.setState({showModalSend: true, currentIndex: index})}} title="Wyślij prośbę do administratora o dodanie książki do listy oficjalnych książek">{x.send ? "Wysłano" : "Wyślij prośbę"}</Button> : ""}
                     </td>
                 </tr>
         )});
