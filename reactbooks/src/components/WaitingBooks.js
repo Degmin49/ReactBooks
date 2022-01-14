@@ -45,8 +45,8 @@ class WaitingBooks extends React.Component {
                     <td>{x.author}</td>
                     <td>{x.description}</td>
                     <td>
-                        <Button className="MyTableButton" variant="success" onClick={() => {this.setState({currentIndex: index})}}>Zaakceptuj</Button>
-                        <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({currentIndex: index})}}>Odrzuć</Button>
+                        <Button className="MyTableButton" variant="success" onClick={() => {this.setState({currentIndex: index}); this.acceptBook();}}>Zaakceptuj</Button>
+                        <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({currentIndex: index}); this.discardBook();}}>Odrzuć</Button>
                     </td>
                 </tr>
         )});
