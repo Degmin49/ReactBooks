@@ -18,14 +18,14 @@ class UsersPanel extends React.Component {
             users: Users,
             currentUser: Users[0],
             currentIndex: 0,
-            showModal: false
+            showModalDelete: false
         };
     }
     
     deleteItem() {
         let users = this.state.users;
         users.splice(this.state.currentIndex, 1);
-        this.setState({ users: users, showModal: false });
+        this.setState({ users: users, showModalDelete: false });
     }
 
     render(){
@@ -38,7 +38,7 @@ class UsersPanel extends React.Component {
                 <td>{x.email}</td>
                 <td>
                     {x.type ? '' : <button type="button" className="btn btn-outline-secondary">Edytuj</button>}
-                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModal: true, currentUser: x, currentIndex: index})}} className="btn btn-outline-danger">Usuń</button>}
+                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalDelete: true, currentUser: x, currentIndex: index})}} className="btn btn-outline-danger">Usuń</button>}
                 </td>
             </tr>
         )});
@@ -66,7 +66,7 @@ class UsersPanel extends React.Component {
         return(
             <Container className="MyContainer">
                 {Content}
-                <Modal show={this.state.showModal} onHide={() => {this.setState({showModal: false})}}>
+                <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
                     <Modal.Header closeButton>
                         <Modal.Title>Usuwanie użytkownika</Modal.Title>
                     </Modal.Header>
@@ -76,7 +76,7 @@ class UsersPanel extends React.Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {this.setState({showModal: false})}}>Anuluj</Button>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalDelete: false})}}>Anuluj</Button>
                         <Button variant="danger" onClick={() => {this.deleteItem()}}>Tak, usuń!</Button>
                     </Modal.Footer>
                 </Modal>
@@ -86,6 +86,5 @@ class UsersPanel extends React.Component {
 }
 
 {/* <Form.Control type="email" placeholder="Enter email" /> */}
-// onHide={this.setState({showModal: false})}
 
 export default UsersPanel
