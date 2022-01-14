@@ -31,6 +31,31 @@ class MyBooks extends React.Component {
         this.setState({ showModalDelete: false, currentIndex: 0 });
     }
 
+    editBook() {
+        let newBook = {};
+        if (this.state.books[this.state.currentIndex].type === "official"){
+            let newBookComment = document.getElementById("newBookComment").value;
+
+            newBook = {bookid: this.state.books[this.state.currentIndex].bookid, type: this.state.books[this.state.currentIndex].type, title: this.state.books[this.state.currentIndex].title, author: this.state.books[this.state.currentIndex].author,comment: newBookComment, description: this.state.books[this.state.currentIndex].description};
+        } else {
+            let newBookTitle = document.getElementById("newBookTitle").value;
+            let newBookAuthor = document.getElementById("newBookAuthor").value;
+            let newBookDescription = document.getElementById("newBookDescription").value;
+            let newBookComment = document.getElementById("newBookComment").value;
+
+            newBook = {bookid: this.state.books[this.state.currentIndex].bookid, type: this.state.books[this.state.currentIndex].type, title: newBookTitle, author: newBookAuthor,comment: newBookComment, description: newBookDescription};
+        }
+
+        console.log('Edytujemy obiekt z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UWAGA - OFFICIAL KSIĄŻKE TYLKO KOMENTARZ MOŻNA EDYTOWAĆ
+
+        let currentId = this.state.books[this.state.currentIndex].bookid;
+        this.setState(prevState => ({
+            books: prevState.books.map(obj => (obj.bookid === currentId ? newBook : obj))
+        }));
+        
+        this.setState({ showModalEdit: false });
+    }
+
     render(){
         const BooksList = this.state.books.map((x,index) => {
             return (
@@ -84,13 +109,14 @@ class MyBooks extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
-                {/* <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>
+                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>
                     <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
                         <Form.Control id="newBookTitle" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} />
                         <Form.Control id="newBookAuthor" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} />
                         <Form.Control id="newBookDescription" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} />
+                        <Form.Control id="newBookComment" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].comment} />
                         </Form>
                     </Modal.Body>
 
@@ -98,7 +124,7 @@ class MyBooks extends React.Component {
                         <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>Anuluj</Button>
                         <Button variant="success" onClick={() => {this.editBook()}}>Tak, zmień!</Button>
                     </Modal.Footer>
-                </Modal> */}
+                </Modal>
             </Container>
         );
     }
