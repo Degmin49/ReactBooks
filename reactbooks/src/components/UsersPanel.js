@@ -66,36 +66,35 @@ class UsersPanel extends React.Component {
                 <td>{x.type ? '' : <button type="button" className="btn btn-outline-secondary">Edytuj</button>}</td>
             </tr>
         )});
+        let Content;
+        if (this.state.users.length > 0){
+            Content = 
+            <div>
+            <span className="MyTitle">Lista użytkowników:<br /><br /></span>
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Lp.</th>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {UsersList}
+                </tbody>
+            </Table>
+        </div>
+        } else {Content = <div className="MyTitleGreen">Nie ma żadnych użytkowników!</div>}
         
         return(
             <Container className="MyContainer">
-                <div>
-                    <span className="MyTitle">Lista użytkowników:<br /><br /></span>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>Lp.</th>
-                                <th>Imię</th>
-                                <th>Nazwisko</th>
-                                <th>E-mail</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {UsersList}
-                            <tr key={-1}>
-                                <th>Lp.</th>
-                                <th>Imię</th>
-                                <th>Nazwisko</th>
-                                <th>
-                                <Form.Control type="email" placeholder="Enter email" />
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
+                {Content}
             </Container>
         );
     }
 }
+
+{/* <Form.Control type="email" placeholder="Enter email" /> */}
 
 export default UsersPanel
