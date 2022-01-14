@@ -75,16 +75,17 @@ class MyBooks extends React.Component {
         let newBookDescription = document.getElementById("newBookDescription").value;
         let newBookComment = document.getElementById("newBookComment").value;
 
-        let newBook = {bookid: this.state.books[this.state.currentIndex].bookid, type: this.state.books[this.state.currentIndex].type, title: newBookTitle, author: newBookAuthor,comment: newBookComment, description: newBookDescription};
+        //musimy w odpowiedzi odrzymać jej id
+        let newBook = {bookid: this.state.books.length+100, type: "private", title: newBookTitle, author: newBookAuthor,comment: newBookComment, description: newBookDescription};
 
-        console.log('Dodajemy nową książkę z "bookid": '+this.state.books[this.state.currentIndex].bookid); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UWAGA - OFFICIAL KSIĄŻKE TYLKO KOMENTARZ MOŻNA EDYTOWAĆ
+        console.log("Dodajemy nową książkę"); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UWAGA - OFFICIAL KSIĄŻKE TYLKO KOMENTARZ MOŻNA EDYTOWAĆ
+        //musimy w odpowiedzi odrzymać jej id
 
-        let currentId = this.state.books[this.state.currentIndex].bookid;
         this.setState(prevState => ({
-            books: prevState.books.map(obj => (obj.bookid === currentId ? newBook : obj))
+            books: [...prevState.books, newBook]
         }));
         
-        this.setState({ showModalEdit: false });
+        this.setState({ showModalAdd: false });
     }
 
     render(){
@@ -180,7 +181,7 @@ class MyBooks extends React.Component {
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => {this.setState({showModalAdd: false})}}>Anuluj</Button>
-                        <Button variant="success" onClick={() => {this.editBook()}}>Tak, dodaj!</Button>
+                        <Button variant="success" onClick={() => {this.addBook()}}>Tak, dodaj!</Button>
                     </Modal.Footer>
                 </Modal>
             </Container>
