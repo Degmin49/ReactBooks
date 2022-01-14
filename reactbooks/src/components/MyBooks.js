@@ -124,7 +124,7 @@ class MyBooks extends React.Component {
                     </tbody>
                 </Table>
                 <Button variant="btn btn-outline-success" onClick={() => {this.setState({showModalAdd: true})}}>Dodaj nową pozycję!</Button>
-                <div className="MyContainer"></div>
+                <div className="MyMarginTop"></div>
             </div>
         } else {Content = <div className="MyTitleGreen">Dodaj swoją pierwszą książkę do listy ulubionych!</div>}
 
