@@ -81,7 +81,7 @@ class OfficialBooks extends React.Component {
                     </tbody>
                 </Table>
             </div>
-        } else {Content = <div className="MyTitleGreen">Dodaj swoją pierwszą książkę do listy ulubionych!</div>}
+        } else {Content = <div className="MyTitleGreen">W bazie nie ma jeszcze żadnej książki!</div>}
         
         return(
             <Container className="MyContainer">
