@@ -18,7 +18,8 @@ class UsersPanel extends React.Component {
             users: Users,
             currentUser: Users[0],
             currentIndex: 0,
-            showModalDelete: false
+            showModalDelete: false,
+            showModalEdit: false
         };
     }
     
@@ -26,6 +27,15 @@ class UsersPanel extends React.Component {
         let users = this.state.users;
         users.splice(this.state.currentIndex, 1);
         this.setState({ users: users, showModalDelete: false });
+    }
+
+    deleteUser() {
+        console.log("Usuwamy obiekt: "+this.state.currentUser.name+" "+this.state.currentUser.surname); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        this.deleteItem();
+    }
+
+    editUser(){
+
     }
 
     render(){
@@ -37,7 +47,7 @@ class UsersPanel extends React.Component {
                 <td>{x.surname}</td>
                 <td>{x.email}</td>
                 <td>
-                    {x.type ? '' : <button type="button" className="btn btn-outline-secondary">Edytuj</button>}
+                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalEdit: true, currentUser: x, currentIndex: index})}} className="btn btn-outline-secondary">Edytuj</button>}
                     {x.type ? '' : <button type="button" onClick={() => {this.setState({showModalDelete: true, currentUser: x, currentIndex: index})}} className="btn btn-outline-danger">Usuń</button>}
                 </td>
             </tr>
@@ -66,20 +76,26 @@ class UsersPanel extends React.Component {
         return(
             <Container className="MyContainer">
                 {Content}
-                <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Usuwanie użytkownika</Modal.Title>
-                    </Modal.Header>
 
-                    <Modal.Body>
-                        <p>Czy na pewno chcesz usunąć użytkownika {this.state.currentUser.name} {this.state.currentUser.surname}?</p>
-                    </Modal.Body>
+                <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
+                    <Modal.Header closeButton><Modal.Title>Usuwanie użytkownika</Modal.Title></Modal.Header>
+                    <Modal.Body><p>Czy na pewno chcesz usunąć użytkownika {this.state.currentUser.name} {this.state.currentUser.surname}?</p></Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalDelete: false})}}>Anuluj</Button>
+                        <Button variant="danger" onClick={() => {this.deleteUser()}}>Tak, usuń!</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                {/* <Modal show={this.state.showModalDelete} onHide={() => {this.setState({showModalDelete: false})}}>
+                    <Modal.Header closeButton><Modal.Title>Usuwanie użytkownika</Modal.Title></Modal.Header>
+                    <Modal.Body><p>Czy na pewno chcesz usunąć użytkownika {this.state.currentUser.name} {this.state.currentUser.surname}?</p></Modal.Body>
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => {this.setState({showModalDelete: false})}}>Anuluj</Button>
                         <Button variant="danger" onClick={() => {this.deleteItem()}}>Tak, usuń!</Button>
                     </Modal.Footer>
-                </Modal>
+                </Modal> */}
             </Container>
         );
     }
