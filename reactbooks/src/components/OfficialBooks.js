@@ -17,10 +17,57 @@ var BooksList = Books.map((x,index) =>
         <td><button type="button" className="btn btn-outline-secondary">Edytuj</button></td>    
     </tr>);
 
-const OfficialBooks = () => {
-    let content;
-    if (Books.length > 0) {
-        content = 
+class OfficialBooks extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            books: Books,
+            currentIndex: 0,
+            showModalDelete: false,
+            showModalEdit: false
+        };
+    }
+
+    // let content;
+    // if (Books.length > 0) {
+    //     content = 
+    //         <div>
+                // <span className="MyTitle">Lista oficjalnych tytułów:<br /><br /></span>
+                // <Table>
+                //     <thead>
+                //         <tr>
+                //             <th>Lp.</th>
+                //             <th>Tytuł</th>
+                //             <th>Autor</th>
+                //             <th>Notatka</th>
+                //         </tr>
+                //     </thead>
+                //     <tbody>
+                //         {BooksList}
+                //     </tbody>
+                // </Table>
+    //             <button type="button" className="btn btn-outline-success">Dodaj nową pozycję!</button>
+    //         </div>
+    // }
+    // else {content = <div className="MyTitleGreen">Dodaj swoją pierwszą książkę do listy ulubionych!</div>}
+
+    render(){
+        const BooksList = this.state.books.map((x,index) => {
+            return (
+                <tr key={x.bookid}>
+                    <td>{index+1}</td>
+                    <td>{x.title} {x.type === "official" ? <span title="Książka potwierdzona">✔</span> : ''}</td>
+                    <td>{x.author}</td>
+                    <td>{x.description}</td>
+                    <td>
+                        {x.type ? '' : <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}}>Edytuj</Button>}
+                        {x.type ? '' : <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}}>Usuń</Button>}
+                    </td>
+                </tr>
+        )});
+        let Content;
+        if (this.state.books.length > 0){
+            Content = 
             <div>
                 <span className="MyTitle">Lista oficjalnych tytułów:<br /><br /></span>
                 <Table>
@@ -36,16 +83,15 @@ const OfficialBooks = () => {
                         {BooksList}
                     </tbody>
                 </Table>
-                <button type="button" className="btn btn-outline-success">Dodaj nową pozycję!</button>
             </div>
+        } else {Content = <div className="MyTitleGreen">Dodaj swoją pierwszą książkę do listy ulubionych!</div>}
+        
+        return(
+            <Container className="MyContainer">
+                {Content}
+            </Container>
+        );
     }
-    else {content = <div className="MyTitleGreen">Dodaj swoją pierwszą książkę do listy ulubionych!</div>}
-
-    return(
-        <Container className="MyContainer">
-            {content}
-        </Container>
-    );
 }
 
 export default OfficialBooks
