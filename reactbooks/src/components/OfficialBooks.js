@@ -97,7 +97,7 @@ class OfficialBooks extends React.Component {
                     </Modal.Footer>
                 </Modal>
 
-                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>
+                <Modal show={this.state.showModalEdit} onHide={() => {this.setState({showModalEdit: false})}}>
                     <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -108,7 +108,7 @@ class OfficialBooks extends React.Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false, currentIndex: 0})}}>Anuluj</Button>
+                        <Button variant="secondary" onClick={() => {this.setState({showModalEdit: false})}}>Anuluj</Button>
                         <Button variant="success" onClick={() => {this.editBook()}}>Tak, zmień!</Button>
                     </Modal.Footer>
                 </Modal>
