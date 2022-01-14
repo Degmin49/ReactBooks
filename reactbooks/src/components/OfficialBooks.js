@@ -28,8 +28,8 @@ class OfficialBooks extends React.Component {
                     <td>{x.author}</td>
                     <td>{x.description}</td>
                     <td>
-                        {x.type === "official" ? '' : <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}}>Edytuj</Button>}
-                        {x.type === "official" ? '' : <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}}>Usuń</Button>}
+                        <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true, currentIndex: index})}}>Edytuj</Button>
+                        <Button className="MyTableButton" variant="danger" onClick={() => {this.setState({showModalDelete: true, currentIndex: index})}}>Usuń</Button>
                     </td>
                 </tr>
         )});
