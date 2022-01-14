@@ -16,6 +16,7 @@ class UsersPanel extends React.Component {
         super(props);
         this.state = {
             users: Users,
+            currentUser: Users[0],
             showModal: false
         };
     }
@@ -34,7 +35,10 @@ class UsersPanel extends React.Component {
                 <td>{x.name} {x.type ? <span title="Konto administratora">✔</span> : ''}</td>
                 <td>{x.surname}</td>
                 <td>{x.email}</td>
-                <td>{x.type ? '' : <button type="button" onClick={() => {this.setState({showModal: true})}} className="btn btn-outline-secondary">Edytuj</button>}</td>
+                <td>
+                    {x.type ? '' : <button type="button" className="btn btn-outline-secondary">Edytuj</button>}
+                    {x.type ? '' : <button type="button" onClick={() => {this.setState({showModal: true, currentUser: x})}} className="btn btn-outline-danger">Usuń</button>}
+                </td>
             </tr>
         )});
         let Content;
@@ -67,7 +71,7 @@ class UsersPanel extends React.Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <p>Czy na pewno chcesz usunąć użytkownika X X?</p>
+                        <p>Czy na pewno chcesz usunąć użytkownika {this.state.currentUser.name} {this.state.currentUser.surname}?</p>
                     </Modal.Body>
 
                     <Modal.Footer>
