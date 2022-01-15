@@ -21,6 +21,7 @@ function App() {
     <div className='App'>
       <Router>
         <Navbar bg='dark' variant='dark' sticky='top' expand='lg' collapseOnSelect>
+          <div className='container'>
           <Navbar.Brand>
             {/* <img src={logo} /> */}
             Logo
@@ -44,6 +45,7 @@ function App() {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
+          </div>
         </Navbar>
         <Routes>
           <Route path="/MyBooks" element={<MyBooks/>} />
