@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, NavDropdown } from "react-bootstrap";
+import { Router, Routes } from "react-router-dom";
 
 class Login extends React.Component {
     
@@ -23,10 +24,10 @@ class Login extends React.Component {
                     <label htmlFor="customCheck1">Zapamiętaj mnie</label>
                 </div>
 
-                <div className="MyCenter">
+                <div className="MyCenterLogin">
                     <Button type="submit" className="btn btn-dark btn-lg btn-block">Zaloguj</Button>
                 </div>
-                <div className="MyRegisterLink">Nie masz konta? <a href="#">Zarejestruj się!</a></div>
+                <div className="MyRegisterLink">Nie masz konta? <a href="/Register">Zarejestruj się!</a></div>
             </Form>
         );
     }
