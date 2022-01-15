@@ -101,9 +101,12 @@ class OfficialBooks extends React.Component {
                     <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} />
-                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} />
-                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} />
+                        <label><h5>Edytuj tytuł:</h5></label>
+                        <Form.Control id="newBookTitle" placeholder="Wpisz tytuł książki" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} />
+                        <label><h5>Edytuj autora:</h5></label>
+                        <Form.Control id="newBookAuthor" placeholder="Wpisz autora książki" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} />
+                        <label><h5>Edytuj opis:</h5></label>
+                        <Form.Control id="newBookDescription" placeholder="Wpisz opis książki" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} />
                         </Form>
                     </Modal.Body>
 
