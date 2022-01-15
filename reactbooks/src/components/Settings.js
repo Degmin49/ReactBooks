@@ -16,7 +16,8 @@ class Settings extends React.Component {
     render(){
         return(
             <Container className="MyContainer">
-                <p>Witaj {this.state.user.name} {this.state.user.surname}!</p>
+                <span className="MyTitle">Witaj {this.state.user.name} {this.state.user.surname}!<br /><br /></span>
+                <p></p>
                 <p>Twoje dane:</p>
                 <Table>
                     <tbody>
