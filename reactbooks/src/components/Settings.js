@@ -14,6 +14,12 @@ class Settings extends React.Component {
         };
     }
 
+    changeDetails() {
+        
+        console.log("Zmiana");
+        this.setState({whatEdit: ''});
+    }
+
     render(){
         return(
             <Container className="MyContainer">
@@ -27,7 +33,8 @@ class Settings extends React.Component {
                             <th><Form.Control className="MyTableButton" defaultValue={this.state.user.name} disabled={this.state.whatEdit === "name" ? false : true} /></th>
                             <th>
                                 {this.state.whatEdit === "name" ?
-                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: ''})}}>Zatwierdź</Button> : 
+                                <span><Button className="MyTableButton" variant="secondary" onClick={() => this.changeDetails()}>Zatwierdź</Button>
+                                <Button className="MyTableButton" variant="secondary" onClick={() => this.changeDetails()}>Anuluj</Button></span> : 
                                 <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "name"})}}>Edytuj</Button>}
                             </th>
                         </tr>
@@ -36,7 +43,8 @@ class Settings extends React.Component {
                             <th><Form.Control className="MyTableButton" defaultValue={this.state.user.surname} disabled={this.state.whatEdit === "surname" ? false : true} /></th>
                             <th>
                                 {this.state.whatEdit === "surname" ?
-                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: ''})}}>Zatwierdź</Button> : 
+                                <span><Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Zatwierdź</Button>
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Anuluj</Button></span> : 
                                 <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "surname"})}}>Edytuj</Button>}
                             </th>
                         </tr>
@@ -45,7 +53,8 @@ class Settings extends React.Component {
                             <th><Form.Control className="MyTableButton" defaultValue={this.state.user.email} disabled={this.state.whatEdit === "email" ? false : true} /></th>
                             <th>
                                 {this.state.whatEdit === "email" ?
-                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: ''})}}>Zatwierdź</Button> : 
+                                <span><Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Zatwierdź</Button>
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Anuluj</Button></span> : 
                                 <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "email"})}}>Edytuj</Button>}
                             </th>
                         </tr>
