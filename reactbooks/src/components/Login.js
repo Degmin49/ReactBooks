@@ -6,23 +6,21 @@ class Login extends React.Component {
     render(){
         return(
             <Form className="MyLogin">
-                <h3>Log in</h3>
+                <div className="MyLoginInfo">Zaloguj się</div>
 
-                <div className="form-group">
-                    <label>Email</label>
+                <div>
+                    <label>Podaj e-mail:</label>
                     <input type="email" className="form-control" placeholder="Enter email" />
                 </div>
 
-                <div className="form-group">
-                    <label>Password</label>
+                <div>
+                    <label>Podaj hasło:</label>
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
+                <div className="MyLoginRememberMe">
+                    <input type="checkbox" />
+                    <label htmlFor="customCheck1">Zapamiętaj mnie</label>
                 </div>
 
                 <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
