@@ -103,9 +103,12 @@ class UsersPanel extends React.Component {
                     <Modal.Header closeButton><Modal.Title>Edytuj dane użytkownika:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control id="newUserName" className="MyFormControl" type="text" defaultValue={this.state.users[this.state.currentIndex].name} />
-                        <Form.Control id="newUserSurname" className="MyFormControl" type="text" defaultValue={this.state.users[this.state.currentIndex].surname} />
-                        <Form.Control id="newUserEmail" className="MyFormControl" type="email" defaultValue={this.state.users[this.state.currentIndex].email} />
+                        <label><h5>Edytuj imię:</h5></label>
+                        <Form.Control id="newUserName" placeholder="Wpisz imię" className="MyFormControl" type="text" defaultValue={this.state.users[this.state.currentIndex].name} />
+                        <label><h5>Edytuj nazwisko:</h5></label>
+                        <Form.Control id="newUserSurname" placeholder="Wpisz nazwisko" className="MyFormControl" type="text" defaultValue={this.state.users[this.state.currentIndex].surname} />
+                        <label><h5>Edytuj adres e-mail:</h5></label>
+                        <Form.Control id="newUserEmail" placeholder="Wpisz adres e-mail" className="MyFormControl" type="email" defaultValue={this.state.users[this.state.currentIndex].email} />
                         </Form>
                     </Modal.Body>
 
