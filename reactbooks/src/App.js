@@ -14,6 +14,7 @@ import OfficialBooks from './components/OfficialBooks';
 import Settings from './components/Settings';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to={"/Login"}>Zaloguj</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to={"/Logout"}>Wyloguj</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/Register"}>Zarejestruj</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -51,6 +53,7 @@ function App() {
           <Route path="/Settings" element={<Settings/>} />
           <Route path="/Login" element={<Login/>} />
           <Route path="/Logout" element={<Logout/>} />
+          <Route path="/Register" element={<Register/>} />
         </Routes>
       </Router>
     </div>
