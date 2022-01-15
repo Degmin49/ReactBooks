@@ -54,3 +54,14 @@
 .MyLoginRememberMe > label{
     margin-left: 10px;
 }
+
+.MyCenter{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
+
+.MyRegisterLink {
+    text-align: right;
+    font-size: 14px;
+}

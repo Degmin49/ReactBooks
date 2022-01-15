@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 class Login extends React.Component {
     
@@ -10,12 +10,12 @@ class Login extends React.Component {
 
                 <div>
                     <label>Podaj e-mail:</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Wpisz swój adres e-mail" />
                 </div>
 
                 <div>
                     <label>Podaj hasło:</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" placeholder="Wpisz swoje hasło" />
                 </div>
 
                 <div className="MyLoginRememberMe">
@@ -23,10 +23,10 @@ class Login extends React.Component {
                     <label htmlFor="customCheck1">Zapamiętaj mnie</label>
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                </p>
+                <div className="MyCenter">
+                    <Button type="submit" className="btn btn-dark btn-lg btn-block">Zaloguj</Button>
+                </div>
+                <div className="MyRegisterLink">Nie masz konta? <a href="#">Zarejestruj się!</a></div>
             </Form>
         );
     }
