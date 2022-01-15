@@ -24,7 +24,7 @@ function App() {
           <div className='container'>
           <Navbar.Brand>
             {/* <img src={logo} /> */}
-            Logo
+            FavoriteBooks.com
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
