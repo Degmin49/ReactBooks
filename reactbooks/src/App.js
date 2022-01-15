@@ -28,7 +28,7 @@ function App() {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
-            <Nav>
+            <Nav className="justify-content-end" style={{ width: "100%" }}>
               {/* Customer */}
               <Nav.Link as={Link} to={"/MyBooks"}>Moja kolekcja książek</Nav.Link>
               {/* Admin */}
