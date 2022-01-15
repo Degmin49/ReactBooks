@@ -146,10 +146,14 @@ class MyBooks extends React.Component {
                     <Modal.Header closeButton><Modal.Title>Edytuj dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
-                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
-                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
-                        <Form.Control id="newBookComment" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].comment} />
+                        <label><h5>Edytuj tytuł:</h5></label>
+                        <Form.Control id="newBookTitle" placeholder="Wpisz tytuł książki" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].title} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
+                        <label><h5>Edytuj autora:</h5></label>
+                        <Form.Control id="newBookAuthor" placeholder="Wpisz autora książki" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].author} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
+                        <label><h5>Edytuj opis:</h5></label>
+                        <Form.Control id="newBookDescription" placeholder="Wpisz opis książki" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].description} disabled={this.state.books[this.state.currentIndex].type === "official" ? true : false} />
+                        <label><h5>Edytuj swoją notatkę:</h5></label>
+                        <Form.Control id="newBookComment" placeholder="Wpisz swoją notatkę" className="MyFormControl" type="text" defaultValue={this.state.books[this.state.currentIndex].comment} />
                         </Form>
                     </Modal.Body>
 
