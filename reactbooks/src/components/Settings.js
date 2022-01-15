@@ -15,34 +15,43 @@ class Settings extends React.Component {
     }
 
     changeDetails() {
-        
-        console.log("Zmiana");
+        switch(this.state.whatEdit) {
+            case 'name': {
+                this.setState(prevState => ({user: {...prevState.user,name: document.getElementById("ChangeUserName").value}}));
+                break;
+            }
+            case 'surname': {
+                this.setState(prevState => ({user: {...prevState.user,surname: document.getElementById("ChangeUserSurname").value}}));
+                break;
+            }
+            case 'email': {
+                this.setState(prevState => ({user: {...prevState.user,email: document.getElementById("ChangeUserEmail").value}}));
+                break;
+            }
+          }
+
+        console.log("Zmieniamy obiekt...."); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         this.setState({whatEdit: ''});
     }
 
     discardChanges() {
-        //console.log(this.state.whatEdit);
-
         switch(this.state.whatEdit) {
             case 'name': {
                 document.getElementById("ChangeUserName").value=this.state.user.name;
-                
                 break;
             }
             case 'surname': {
+                document.getElementById("ChangeUserSurname").value=this.state.user.surname;
                 break;
             }
             case 'email': {
+                document.getElementById("ChangeUserEmail").value=this.state.user.email;
                 break;
             }
           }
 
         this.setState({whatEdit: ''});
     }
-
-    // this.setState(prevState => ({
-    //     user: {...prevState.user,name: 'something'}
-    // }));
 
     render(){
         return(
@@ -64,7 +73,7 @@ class Settings extends React.Component {
                         </tr>
                         <tr>
                             <th>Nazwisko:</th>
-                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.surname} disabled={this.state.whatEdit === "surname" ? false : true} /></th>
+                            <th><Form.Control id="ChangeUserSurname" className="MyTableButton" defaultValue={this.state.user.surname} disabled={this.state.whatEdit === "surname" ? false : true} /></th>
                             <th>
                                 {this.state.whatEdit === "surname" ?
                                 <span><Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Zatwierdź</Button>
@@ -74,7 +83,7 @@ class Settings extends React.Component {
                         </tr>
                         <tr>
                             <th>E-mail:</th>
-                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.email} disabled={this.state.whatEdit === "email" ? false : true} /></th>
+                            <th><Form.Control id="ChangeUserEmail" className="MyTableButton" defaultValue={this.state.user.email} disabled={this.state.whatEdit === "email" ? false : true} /></th>
                             <th>
                                 {this.state.whatEdit === "email" ?
                                 <span><Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Zatwierdź</Button>
