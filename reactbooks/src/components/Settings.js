@@ -9,7 +9,8 @@ class Settings extends React.Component {
         this.state = {
             user: User,
             showModalDelete: false,
-            showModalEdit: false
+            showModalEdit: false,
+            whatEdit: '',
         };
     }
 
@@ -23,18 +24,30 @@ class Settings extends React.Component {
                     <tbody>
                         <tr>
                             <th>Imię:</th>
-                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.name} disabled /></th>
-                            <th><Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true})}}>Edytuj</Button></th>
+                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.name} disabled={this.state.whatEdit === "name" ? false : true} /></th>
+                            <th>
+                                {this.state.whatEdit === "name" ?
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: ''})}}>Zatwierdź</Button> : 
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "name"})}}>Edytuj</Button>}
+                            </th>
                         </tr>
                         <tr>
                             <th>Nazwisko:</th>
-                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.surname} disabled /></th>
-                            <th><Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true})}}>Edytuj</Button></th>
+                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.surname} disabled={this.state.whatEdit === "surname" ? false : true} /></th>
+                            <th>
+                                {this.state.whatEdit === "surname" ?
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: ''})}}>Zatwierdź</Button> : 
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "surname"})}}>Edytuj</Button>}
+                            </th>
                         </tr>
                         <tr>
                             <th>E-mail:</th>
-                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.email} disabled /></th>
-                            <th><Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({showModalEdit: true})}}>Edytuj</Button></th>
+                            <th><Form.Control className="MyTableButton" defaultValue={this.state.user.email} disabled={this.state.whatEdit === "email" ? false : true} /></th>
+                            <th>
+                                {this.state.whatEdit === "email" ?
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: ''})}}>Zatwierdź</Button> : 
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "email"})}}>Edytuj</Button>}
+                            </th>
                         </tr>
                     </tbody>
                 </Table>
