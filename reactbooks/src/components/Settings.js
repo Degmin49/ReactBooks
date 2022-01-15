@@ -28,6 +28,10 @@ class Settings extends React.Component {
                 this.setState(prevState => ({user: {...prevState.user,email: document.getElementById("ChangeUserEmail").value}}));
                 break;
             }
+            case 'password': {
+                this.setState(prevState => ({user: {...prevState.user,password: document.getElementById("ChangeUserPassword").value}}));
+                break;
+            }
           }
 
         console.log("Zmieniamy obiekt...."); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -46,6 +50,10 @@ class Settings extends React.Component {
             }
             case 'email': {
                 document.getElementById("ChangeUserEmail").value=this.state.user.email;
+                break;
+            }
+            case 'password': {
+                document.getElementById("ChangeUserPassword").value='';
                 break;
             }
           }
@@ -89,6 +97,16 @@ class Settings extends React.Component {
                                 <span><Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Zatwierdź</Button>
                                 <Button className="MyTableButton" variant="secondary" onClick={() => {this.discardChanges()}}>Anuluj</Button></span> : 
                                 <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "email"})}} disabled={this.state.whatEdit === '' ? false : true}>Edytuj</Button>}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Hasło:</th>
+                            <th><Form.Control id="ChangeUserPassword" type="password" className="MyTableButton" placeholder="**********" disabled={this.state.whatEdit === "password" ? false : true} /></th>
+                            <th>
+                                {this.state.whatEdit === "password" ?
+                                <span><Button className="MyTableButton" variant="secondary" onClick={() => {this.changeDetails()}}>Zatwierdź</Button>
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.discardChanges()}}>Anuluj</Button></span> : 
+                                <Button className="MyTableButton" variant="secondary" onClick={() => {this.setState({whatEdit: "password"})}} disabled={this.state.whatEdit === '' ? false : true}>Edytuj</Button>}
                             </th>
                         </tr>
                     </tbody>
