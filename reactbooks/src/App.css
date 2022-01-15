@@ -30,3 +30,11 @@
 .MyMarginTop{
     margin-top: 50px;
 }
+
+.MyLogin{
+    min-width: 400px;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+}
