@@ -173,10 +173,14 @@ class MyBooks extends React.Component {
                     <Modal.Header closeButton><Modal.Title>Wpisz dane książki:</Modal.Title></Modal.Header>
                     <Modal.Body>
                         <Form>
-                        <Form.Control id="newBookTitle" className="MyFormControl" type="text" />
-                        <Form.Control id="newBookAuthor" className="MyFormControl" type="text" />
-                        <Form.Control id="newBookDescription" className="MyFormControl" type="text" />
-                        <Form.Control id="newBookComment" className="MyFormControl" type="text" />
+                        <label><h5>Podaj tytuł:</h5></label>
+                        <Form.Control id="newBookTitle" placeholder="Wpisz tytuł książki" className="MyFormControl" type="text" />
+                        <label><h5>Podaj autora:</h5></label>
+                        <Form.Control id="newBookAuthor" placeholder="Wpisz autora książki" className="MyFormControl" type="text" />
+                        <label><h5>Wpisz opis:</h5></label>
+                        <Form.Control id="newBookDescription" placeholder="Wpisz opis książki" className="MyFormControl" type="text" />
+                        <label><h5>Wpisz swoją notatkę:</h5></label>
+                        <Form.Control id="newBookComment" placeholder="Wpisz swoją notatkę" className="MyFormControl" type="text" />
                         </Form>
                     </Modal.Body>
 
