@@ -47,7 +47,7 @@ class Register extends React.Component {
 
                     <div>
                         <label>Podaj hasło:</label>
-                        <input type="password" id="registerPassword" className="form-control" placeholder="Wpisz swoje hasło" />
+                        <input type="password" id="registerPassword" className="form-control" placeholder="Wpisz bezpieczne hasło" />
                     </div>
 
                     <div className="MyCenterRegister">
