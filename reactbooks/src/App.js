@@ -18,8 +18,13 @@ import Register from './components/Register';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://localhost:44340';
+const baseUrl = window.location.protocol + "//" + window.location.host + "/";
 
 function App() {
+  if (baseUrl === window.location.href){
+    window.location.replace("/MyBooks"); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  }
+  
   return (
     <div className='App'>
       <Router>
