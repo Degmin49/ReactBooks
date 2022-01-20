@@ -20,7 +20,11 @@ class Login extends React.Component {
         axios.post('/api/Access/Login', userDetails)
         .then(res => {
             localStorage.setItem('token',res.data.token);
-            window.location.replace("/");
+
+            //if Admin
+            //window.location.replace("/WaitingBooks");
+            //if Customer
+            window.location.replace("/MyBooks");
         })
         .catch(err => {
             this.setState({showModalFail: true});
