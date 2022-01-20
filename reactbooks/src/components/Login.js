@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, NavDropdown, Modal } from "react-bootstrap";
 import { Router, Routes } from "react-router-dom";
+import axios from "axios";
 
 class Login extends React.Component {
     constructor(props){
@@ -10,14 +11,21 @@ class Login extends React.Component {
         };
     }
 
-    login(){
+    login(){  
         let loginEmail = document.getElementById("loginEmail").value;
         let loginPassword = document.getElementById("loginPassword").value;
-        let loginUser = {email: loginEmail, password: loginPassword};
+        
+        let userDetails = {email: loginEmail, password: loginPassword};
 
-        console.log("logujemy użytkownika: "+loginUser.email+" "+loginUser.password); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-        this.setState({ showModalFail: true});
+        axios.post('/api/Access/Login', userDetails)
+        .then(res => {
+            localStorage.setItem('token',res.data.token);
+            window.location.replace("/");
+        })
+        .catch(err => {
+            this.setState({showModalFail: true});
+            console.log(err);
+        });
     }
 
     render(){
