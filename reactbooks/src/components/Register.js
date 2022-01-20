@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import axios from "axios";
 
 class Register extends React.Component {
     constructor(props){
@@ -17,11 +18,16 @@ class Register extends React.Component {
         let registerPassword = document.getElementById("registerPassword").value;
         let registerUser = {name: registerName, surname: registerSurname, email: registerEmail, password: registerPassword};
 
+        let userDetails = {email: registerUser.email,password: registerUser.password, fullName: registerUser.name+" "+registerUser.surname };
 
-        console.log("rejestrujemy użytkownika: "+registerUser.name+" "+registerUser.surname+" "+registerUser.email+" "+registerUser.password); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        console.log("Jeśli serwer odpowie to wyświetlamy Modal");
-        //this.setState({ showModalSuccess: true});
-        this.setState({ showModalFail: true});
+        axios.post('/api/Access/Registration', userDetails)
+        .then(res => {
+            this.setState({showModalSuccess: true});
+        })
+        .catch(err => {
+            this.setState({showModalFail: true});
+            console.log(err);
+        });
     }
 
     render(){
@@ -67,7 +73,7 @@ class Register extends React.Component {
 
                 <Modal show={this.state.showModalFail} onHide={() => {this.setState({showModalFail: false})}}>
                     <Modal.Header closeButton><Modal.Title>Nie można utworzyć konta!</Modal.Title></Modal.Header>
-                    <Modal.Body>Niestety, ale nie można utworzyć konta z powodu: </Modal.Body>
+                    <Modal.Body>Niestety, ale nie można utworzyć konta! Podane dane są nieprawidłowe, lub wystąpił błąd po stronie serwera!</Modal.Body>
 
                     <Modal.Footer>
                         <Button variant="danger" onClick={() => {this.setState({showModalFail: false})}}>Spróbuj ponownie</Button>

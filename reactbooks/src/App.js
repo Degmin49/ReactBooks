@@ -15,6 +15,9 @@ import Settings from './components/Settings';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://localhost:44340';
 
 function App() {
   return (
