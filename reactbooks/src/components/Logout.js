@@ -4,16 +4,17 @@ import { Router, Routes } from "react-router-dom";
 import axios from "axios";
 
 function Logout() {
-    axios.post('/api/Access/Logout')
-    .then(res => {
-        localStorage.clear();
-    })
+    console.log(localStorage.getItem('token'));
+    let token = { token: localStorage.getItem('token') };
+    axios.post('/api/Access/Logout', token)
     .catch(err => {
-        console.log(err);
+        console.log(err); //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Błędyyyyy
     })
     .then( function () {
-        window.location.replace("/Login");
+        localStorage.clear();
+        //window.location.replace("/Login");
     });
+    return "";
 }
 
 export default Logout
